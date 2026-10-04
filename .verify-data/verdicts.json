@@ -1,0 +1,2974 @@
+{
+  "SMOKE-CARRY-001": {
+    "audit_id": "SMOKE-CARRY-001",
+    "fingerprint": "926f22a1acef611cd38949195f6c9d7720eb7a4d96cbf7700e6e59ab3e8a52c4",
+    "submitted_at": "2026-10-04T20:29:17.054197+00:00",
+    "request": {
+      "audit_id": "SMOKE-CARRY-001",
+      "cycle_us": 1000,
+      "flows": [
+        {
+          "id": "L",
+          "priority": 1,
+          "period_us": 1900,
+          "length_us": 200,
+          "deadline_us": 1900
+        }
+      ],
+      "gates": [
+        {
+          "time_us": 0,
+          "priorities": [
+            1
+          ]
+        },
+        {
+          "time_us": 500,
+          "priorities": []
+        }
+      ]
+    },
+    "verdict": {
+      "status": "PASS",
+      "flow_evidence": {
+        "L": [
+          {
+            "instance": 10,
+            "release": 19000,
+            "enqueue": 19000,
+            "start": 19000,
+            "end": 19200,
+            "length": 200,
+            "deadline": 20900,
+            "met": true
+          },
+          {
+            "instance": 11,
+            "release": 20900,
+            "enqueue": 20900,
+            "start": 21000,
+            "end": 21200,
+            "length": 200,
+            "deadline": 22800,
+            "met": true
+          },
+          {
+            "instance": 12,
+            "release": 22800,
+            "enqueue": 22800,
+            "start": 23000,
+            "end": 23200,
+            "length": 200,
+            "deadline": 24700,
+            "met": true
+          },
+          {
+            "instance": 13,
+            "release": 24700,
+            "enqueue": 24700,
+            "start": 25000,
+            "end": 25200,
+            "length": 200,
+            "deadline": 26600,
+            "met": true
+          },
+          {
+            "instance": 14,
+            "release": 26600,
+            "enqueue": 26600,
+            "start": 27000,
+            "end": 27200,
+            "length": 200,
+            "deadline": 28500,
+            "met": true
+          },
+          {
+            "instance": 15,
+            "release": 28500,
+            "enqueue": 28500,
+            "start": 29000,
+            "end": 29200,
+            "length": 200,
+            "deadline": 30400,
+            "met": true
+          },
+          {
+            "instance": 16,
+            "release": 30400,
+            "enqueue": 30400,
+            "start": 31000,
+            "end": 31200,
+            "length": 200,
+            "deadline": 32300,
+            "met": true
+          },
+          {
+            "instance": 17,
+            "release": 32300,
+            "enqueue": 32300,
+            "start": 32300,
+            "end": 32500,
+            "length": 200,
+            "deadline": 34200,
+            "met": true
+          },
+          {
+            "instance": 18,
+            "release": 34200,
+            "enqueue": 34200,
+            "start": 34200,
+            "end": 34400,
+            "length": 200,
+            "deadline": 36100,
+            "met": true
+          },
+          {
+            "instance": 19,
+            "release": 36100,
+            "enqueue": 36100,
+            "start": 36100,
+            "end": 36300,
+            "length": 200,
+            "deadline": 38000,
+            "met": true
+          }
+        ]
+      },
+      "first_overdue": null,
+      "timeline": [
+        {
+          "t0": 0,
+          "t1": 200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 0,
+            "priority": 1,
+            "release": 0,
+            "deadline": 1900,
+            "start": 0,
+            "end": 200
+          }
+        },
+        {
+          "t0": 200,
+          "t1": 500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 500,
+          "t1": 1000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 1000,
+          "t1": 1500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 1500,
+          "t1": 1900,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 1900,
+          "t1": 2000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 1,
+              "priority": 1,
+              "release": 1900,
+              "enqueue": 1900,
+              "length": 200,
+              "deadline": 3800
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 2000,
+          "t1": 2200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 1,
+            "priority": 1,
+            "release": 1900,
+            "deadline": 3800,
+            "start": 2000,
+            "end": 2200
+          }
+        },
+        {
+          "t0": 2200,
+          "t1": 2500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 2500,
+          "t1": 3000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 3000,
+          "t1": 3500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 3500,
+          "t1": 3800,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 3800,
+          "t1": 4000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 2,
+              "priority": 1,
+              "release": 3800,
+              "enqueue": 3800,
+              "length": 200,
+              "deadline": 5700
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 4000,
+          "t1": 4200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 2,
+            "priority": 1,
+            "release": 3800,
+            "deadline": 5700,
+            "start": 4000,
+            "end": 4200
+          }
+        },
+        {
+          "t0": 4200,
+          "t1": 4500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 4500,
+          "t1": 5000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 5000,
+          "t1": 5500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 5500,
+          "t1": 5700,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 5700,
+          "t1": 6000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 3,
+              "priority": 1,
+              "release": 5700,
+              "enqueue": 5700,
+              "length": 200,
+              "deadline": 7600
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 6000,
+          "t1": 6200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 3,
+            "priority": 1,
+            "release": 5700,
+            "deadline": 7600,
+            "start": 6000,
+            "end": 6200
+          }
+        },
+        {
+          "t0": 6200,
+          "t1": 6500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 6500,
+          "t1": 7000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 7000,
+          "t1": 7500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 7500,
+          "t1": 7600,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 7600,
+          "t1": 8000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 4,
+              "priority": 1,
+              "release": 7600,
+              "enqueue": 7600,
+              "length": 200,
+              "deadline": 9500
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 8000,
+          "t1": 8200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 4,
+            "priority": 1,
+            "release": 7600,
+            "deadline": 9500,
+            "start": 8000,
+            "end": 8200
+          }
+        },
+        {
+          "t0": 8200,
+          "t1": 8500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 8500,
+          "t1": 9000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 9000,
+          "t1": 9500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 9500,
+          "t1": 10000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 5,
+              "priority": 1,
+              "release": 9500,
+              "enqueue": 9500,
+              "length": 200,
+              "deadline": 11400
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 10000,
+          "t1": 10200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 5,
+            "priority": 1,
+            "release": 9500,
+            "deadline": 11400,
+            "start": 10000,
+            "end": 10200
+          }
+        },
+        {
+          "t0": 10200,
+          "t1": 10500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 10500,
+          "t1": 11000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 11000,
+          "t1": 11400,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 11400,
+          "t1": 11500,
+          "gate": [
+            1
+          ],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 6,
+              "priority": 1,
+              "release": 11400,
+              "enqueue": 11400,
+              "length": 200,
+              "deadline": 13300
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 11500,
+          "t1": 12000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 6,
+              "priority": 1,
+              "release": 11400,
+              "enqueue": 11400,
+              "length": 200,
+              "deadline": 13300
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 12000,
+          "t1": 12200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 6,
+            "priority": 1,
+            "release": 11400,
+            "deadline": 13300,
+            "start": 12000,
+            "end": 12200
+          }
+        },
+        {
+          "t0": 12200,
+          "t1": 12500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 12500,
+          "t1": 13000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 13000,
+          "t1": 13300,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 13300,
+          "t1": 13500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 7,
+            "priority": 1,
+            "release": 13300,
+            "deadline": 15200,
+            "start": 13300,
+            "end": 13500
+          }
+        },
+        {
+          "t0": 13500,
+          "t1": 14000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 14000,
+          "t1": 14500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 14500,
+          "t1": 15000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 15000,
+          "t1": 15200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 15200,
+          "t1": 15400,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 8,
+            "priority": 1,
+            "release": 15200,
+            "deadline": 17100,
+            "start": 15200,
+            "end": 15400
+          }
+        },
+        {
+          "t0": 15400,
+          "t1": 15500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 15500,
+          "t1": 16000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 16000,
+          "t1": 16500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 16500,
+          "t1": 17000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 17000,
+          "t1": 17100,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 17100,
+          "t1": 17300,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 9,
+            "priority": 1,
+            "release": 17100,
+            "deadline": 19000,
+            "start": 17100,
+            "end": 17300
+          }
+        },
+        {
+          "t0": 17300,
+          "t1": 17500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 17500,
+          "t1": 18000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 18000,
+          "t1": 18500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 18500,
+          "t1": 19000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 19000,
+          "t1": 19200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 10,
+            "priority": 1,
+            "release": 19000,
+            "deadline": 20900,
+            "start": 19000,
+            "end": 19200
+          }
+        },
+        {
+          "t0": 19200,
+          "t1": 19500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 19500,
+          "t1": 20000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 20000,
+          "t1": 20500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 20500,
+          "t1": 20900,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 20900,
+          "t1": 21000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 11,
+              "priority": 1,
+              "release": 20900,
+              "enqueue": 20900,
+              "length": 200,
+              "deadline": 22800
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 21000,
+          "t1": 21200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 11,
+            "priority": 1,
+            "release": 20900,
+            "deadline": 22800,
+            "start": 21000,
+            "end": 21200
+          }
+        },
+        {
+          "t0": 21200,
+          "t1": 21500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 21500,
+          "t1": 22000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 22000,
+          "t1": 22500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 22500,
+          "t1": 22800,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 22800,
+          "t1": 23000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 12,
+              "priority": 1,
+              "release": 22800,
+              "enqueue": 22800,
+              "length": 200,
+              "deadline": 24700
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 23000,
+          "t1": 23200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 12,
+            "priority": 1,
+            "release": 22800,
+            "deadline": 24700,
+            "start": 23000,
+            "end": 23200
+          }
+        },
+        {
+          "t0": 23200,
+          "t1": 23500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 23500,
+          "t1": 24000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 24000,
+          "t1": 24500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 24500,
+          "t1": 24700,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 24700,
+          "t1": 25000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 13,
+              "priority": 1,
+              "release": 24700,
+              "enqueue": 24700,
+              "length": 200,
+              "deadline": 26600
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 25000,
+          "t1": 25200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 13,
+            "priority": 1,
+            "release": 24700,
+            "deadline": 26600,
+            "start": 25000,
+            "end": 25200
+          }
+        },
+        {
+          "t0": 25200,
+          "t1": 25500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 25500,
+          "t1": 26000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 26000,
+          "t1": 26500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 26500,
+          "t1": 26600,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 26600,
+          "t1": 27000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 14,
+              "priority": 1,
+              "release": 26600,
+              "enqueue": 26600,
+              "length": 200,
+              "deadline": 28500
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 27000,
+          "t1": 27200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 14,
+            "priority": 1,
+            "release": 26600,
+            "deadline": 28500,
+            "start": 27000,
+            "end": 27200
+          }
+        },
+        {
+          "t0": 27200,
+          "t1": 27500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 27500,
+          "t1": 28000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 28000,
+          "t1": 28500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 28500,
+          "t1": 29000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 15,
+              "priority": 1,
+              "release": 28500,
+              "enqueue": 28500,
+              "length": 200,
+              "deadline": 30400
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 29000,
+          "t1": 29200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 15,
+            "priority": 1,
+            "release": 28500,
+            "deadline": 30400,
+            "start": 29000,
+            "end": 29200
+          }
+        },
+        {
+          "t0": 29200,
+          "t1": 29500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 29500,
+          "t1": 30000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 30000,
+          "t1": 30400,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 30400,
+          "t1": 30500,
+          "gate": [
+            1
+          ],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 16,
+              "priority": 1,
+              "release": 30400,
+              "enqueue": 30400,
+              "length": 200,
+              "deadline": 32300
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 30500,
+          "t1": 31000,
+          "gate": [],
+          "queues": [
+            {
+              "flow": "L",
+              "instance": 16,
+              "priority": 1,
+              "release": 30400,
+              "enqueue": 30400,
+              "length": 200,
+              "deadline": 32300
+            }
+          ],
+          "transmission": null
+        },
+        {
+          "t0": 31000,
+          "t1": 31200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 16,
+            "priority": 1,
+            "release": 30400,
+            "deadline": 32300,
+            "start": 31000,
+            "end": 31200
+          }
+        },
+        {
+          "t0": 31200,
+          "t1": 31500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 31500,
+          "t1": 32000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 32000,
+          "t1": 32300,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 32300,
+          "t1": 32500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 17,
+            "priority": 1,
+            "release": 32300,
+            "deadline": 34200,
+            "start": 32300,
+            "end": 32500
+          }
+        },
+        {
+          "t0": 32500,
+          "t1": 33000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 33000,
+          "t1": 33500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 33500,
+          "t1": 34000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 34000,
+          "t1": 34200,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 34200,
+          "t1": 34400,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 18,
+            "priority": 1,
+            "release": 34200,
+            "deadline": 36100,
+            "start": 34200,
+            "end": 34400
+          }
+        },
+        {
+          "t0": 34400,
+          "t1": 34500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 34500,
+          "t1": 35000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 35000,
+          "t1": 35500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 35500,
+          "t1": 36000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 36000,
+          "t1": 36100,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 36100,
+          "t1": 36300,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "L",
+            "instance": 19,
+            "priority": 1,
+            "release": 36100,
+            "deadline": 38000,
+            "start": 36100,
+            "end": 36300
+          }
+        },
+        {
+          "t0": 36300,
+          "t1": 36500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 36500,
+          "t1": 37000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 37000,
+          "t1": 37500,
+          "gate": [
+            1
+          ],
+          "queues": [],
+          "transmission": null
+        },
+        {
+          "t0": 37500,
+          "t1": 38000,
+          "gate": [],
+          "queues": [],
+          "transmission": null
+        }
+      ],
+      "records": [
+        {
+          "flow": "L",
+          "instance": 0,
+          "priority": 1,
+          "release": 0,
+          "enqueue": 0,
+          "length": 200,
+          "deadline": 1900,
+          "start": 0,
+          "end": 200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 1,
+          "priority": 1,
+          "release": 1900,
+          "enqueue": 1900,
+          "length": 200,
+          "deadline": 3800,
+          "start": 2000,
+          "end": 2200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 2,
+          "priority": 1,
+          "release": 3800,
+          "enqueue": 3800,
+          "length": 200,
+          "deadline": 5700,
+          "start": 4000,
+          "end": 4200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 3,
+          "priority": 1,
+          "release": 5700,
+          "enqueue": 5700,
+          "length": 200,
+          "deadline": 7600,
+          "start": 6000,
+          "end": 6200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 4,
+          "priority": 1,
+          "release": 7600,
+          "enqueue": 7600,
+          "length": 200,
+          "deadline": 9500,
+          "start": 8000,
+          "end": 8200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 5,
+          "priority": 1,
+          "release": 9500,
+          "enqueue": 9500,
+          "length": 200,
+          "deadline": 11400,
+          "start": 10000,
+          "end": 10200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 6,
+          "priority": 1,
+          "release": 11400,
+          "enqueue": 11400,
+          "length": 200,
+          "deadline": 13300,
+          "start": 12000,
+          "end": 12200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 7,
+          "priority": 1,
+          "release": 13300,
+          "enqueue": 13300,
+          "length": 200,
+          "deadline": 15200,
+          "start": 13300,
+          "end": 13500,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 8,
+          "priority": 1,
+          "release": 15200,
+          "enqueue": 15200,
+          "length": 200,
+          "deadline": 17100,
+          "start": 15200,
+          "end": 15400,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 9,
+          "priority": 1,
+          "release": 17100,
+          "enqueue": 17100,
+          "length": 200,
+          "deadline": 19000,
+          "start": 17100,
+          "end": 17300,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 10,
+          "priority": 1,
+          "release": 19000,
+          "enqueue": 19000,
+          "length": 200,
+          "deadline": 20900,
+          "start": 19000,
+          "end": 19200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 11,
+          "priority": 1,
+          "release": 20900,
+          "enqueue": 20900,
+          "length": 200,
+          "deadline": 22800,
+          "start": 21000,
+          "end": 21200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 12,
+          "priority": 1,
+          "release": 22800,
+          "enqueue": 22800,
+          "length": 200,
+          "deadline": 24700,
+          "start": 23000,
+          "end": 23200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 13,
+          "priority": 1,
+          "release": 24700,
+          "enqueue": 24700,
+          "length": 200,
+          "deadline": 26600,
+          "start": 25000,
+          "end": 25200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 14,
+          "priority": 1,
+          "release": 26600,
+          "enqueue": 26600,
+          "length": 200,
+          "deadline": 28500,
+          "start": 27000,
+          "end": 27200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 15,
+          "priority": 1,
+          "release": 28500,
+          "enqueue": 28500,
+          "length": 200,
+          "deadline": 30400,
+          "start": 29000,
+          "end": 29200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 16,
+          "priority": 1,
+          "release": 30400,
+          "enqueue": 30400,
+          "length": 200,
+          "deadline": 32300,
+          "start": 31000,
+          "end": 31200,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 17,
+          "priority": 1,
+          "release": 32300,
+          "enqueue": 32300,
+          "length": 200,
+          "deadline": 34200,
+          "start": 32300,
+          "end": 32500,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 18,
+          "priority": 1,
+          "release": 34200,
+          "enqueue": 34200,
+          "length": 200,
+          "deadline": 36100,
+          "start": 34200,
+          "end": 34400,
+          "met": true
+        },
+        {
+          "flow": "L",
+          "instance": 19,
+          "priority": 1,
+          "release": 36100,
+          "enqueue": 36100,
+          "length": 200,
+          "deadline": 38000,
+          "start": 36100,
+          "end": 36300,
+          "met": true
+        }
+      ],
+      "carried_frames": [
+        [
+          "L",
+          1
+        ],
+        [
+          "L",
+          2
+        ],
+        [
+          "L",
+          3
+        ],
+        [
+          "L",
+          4
+        ],
+        [
+          "L",
+          5
+        ],
+        [
+          "L",
+          6
+        ],
+        [
+          "L",
+          11
+        ],
+        [
+          "L",
+          12
+        ],
+        [
+          "L",
+          13
+        ],
+        [
+          "L",
+          14
+        ],
+        [
+          "L",
+          15
+        ],
+        [
+          "L",
+          16
+        ]
+      ],
+      "hyperperiod_us": 19000,
+      "convergence": {
+        "mode": "REPEAT_SIGNATURE",
+        "segment_start": 0,
+        "segment_end": 19000,
+        "boundary_samples": [
+          {
+            "time": 0,
+            "queued_count": 1,
+            "queued_length": 200,
+            "outstanding_length": 200,
+            "queues": [
+              {
+                "flow": "L",
+                "instance": 0,
+                "priority": 1,
+                "release": 0,
+                "enqueue": 0,
+                "length": 200,
+                "deadline": 1900
+              }
+            ],
+            "transmission": null
+          },
+          {
+            "time": 19000,
+            "queued_count": 1,
+            "queued_length": 200,
+            "outstanding_length": 200,
+            "queues": [
+              {
+                "flow": "L",
+                "instance": 10,
+                "priority": 1,
+                "release": 19000,
+                "enqueue": 19000,
+                "length": 200,
+                "deadline": 20900
+              }
+            ],
+            "transmission": null
+          }
+        ]
+      }
+    }
+  },
+  "SMOKE-GROWTH-001": {
+    "audit_id": "SMOKE-GROWTH-001",
+    "fingerprint": "700f9ed3c9045dd08d97d48ec4b0bd93a7fa72049c1d2b68cc2854d96d6b0ba5",
+    "submitted_at": "2026-10-04T20:29:17.065796+00:00",
+    "request": {
+      "audit_id": "SMOKE-GROWTH-001",
+      "cycle_us": 1000,
+      "flows": [
+        {
+          "id": "A",
+          "priority": 6,
+          "period_us": 500,
+          "length_us": 300,
+          "deadline_us": 500
+        },
+        {
+          "id": "B",
+          "priority": 6,
+          "period_us": 500,
+          "length_us": 300,
+          "deadline_us": 500
+        }
+      ],
+      "gates": [
+        {
+          "time_us": 0,
+          "priorities": [
+            6,
+            7
+          ]
+        }
+      ]
+    },
+    "verdict": {
+      "status": "REJECTED_QUEUE_GROWTH",
+      "hyperperiod_us": 1000,
+      "convergence": {
+        "mode": "QUEUE_GROWTH",
+        "boundary_samples": [
+          {
+            "time": 0,
+            "queued_count": 2,
+            "queued_length": 600,
+            "outstanding_length": 600,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 0,
+                "priority": 6,
+                "release": 0,
+                "enqueue": 0,
+                "length": 300,
+                "deadline": 500
+              },
+              {
+                "flow": "B",
+                "instance": 0,
+                "priority": 6,
+                "release": 0,
+                "enqueue": 0,
+                "length": 300,
+                "deadline": 500
+              }
+            ],
+            "transmission": null
+          },
+          {
+            "time": 1000,
+            "queued_count": 2,
+            "queued_length": 600,
+            "outstanding_length": 800,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 2,
+                "priority": 6,
+                "release": 1000,
+                "enqueue": 1000,
+                "length": 300,
+                "deadline": 1500
+              },
+              {
+                "flow": "B",
+                "instance": 2,
+                "priority": 6,
+                "release": 1000,
+                "enqueue": 1000,
+                "length": 300,
+                "deadline": 1500
+              }
+            ],
+            "transmission": {
+              "flow": "B",
+              "instance": 1,
+              "priority": 6,
+              "start": 900,
+              "end": 1200,
+              "remaining": 200
+            }
+          },
+          {
+            "time": 2000,
+            "queued_count": 3,
+            "queued_length": 900,
+            "outstanding_length": 1000,
+            "queues": [
+              {
+                "flow": "B",
+                "instance": 3,
+                "priority": 6,
+                "release": 1500,
+                "enqueue": 1500,
+                "length": 300,
+                "deadline": 2000
+              },
+              {
+                "flow": "A",
+                "instance": 4,
+                "priority": 6,
+                "release": 2000,
+                "enqueue": 2000,
+                "length": 300,
+                "deadline": 2500
+              },
+              {
+                "flow": "B",
+                "instance": 4,
+                "priority": 6,
+                "release": 2000,
+                "enqueue": 2000,
+                "length": 300,
+                "deadline": 2500
+              }
+            ],
+            "transmission": {
+              "flow": "A",
+              "instance": 3,
+              "priority": 6,
+              "start": 1800,
+              "end": 2100,
+              "remaining": 100
+            }
+          },
+          {
+            "time": 3000,
+            "queued_count": 4,
+            "queued_length": 1200,
+            "outstanding_length": 1200,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 5,
+                "priority": 6,
+                "release": 2500,
+                "enqueue": 2500,
+                "length": 300,
+                "deadline": 3000
+              },
+              {
+                "flow": "B",
+                "instance": 5,
+                "priority": 6,
+                "release": 2500,
+                "enqueue": 2500,
+                "length": 300,
+                "deadline": 3000
+              },
+              {
+                "flow": "A",
+                "instance": 6,
+                "priority": 6,
+                "release": 3000,
+                "enqueue": 3000,
+                "length": 300,
+                "deadline": 3500
+              },
+              {
+                "flow": "B",
+                "instance": 6,
+                "priority": 6,
+                "release": 3000,
+                "enqueue": 3000,
+                "length": 300,
+                "deadline": 3500
+              }
+            ],
+            "transmission": null
+          },
+          {
+            "time": 4000,
+            "queued_count": 4,
+            "queued_length": 1200,
+            "outstanding_length": 1400,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 7,
+                "priority": 6,
+                "release": 3500,
+                "enqueue": 3500,
+                "length": 300,
+                "deadline": 4000
+              },
+              {
+                "flow": "B",
+                "instance": 7,
+                "priority": 6,
+                "release": 3500,
+                "enqueue": 3500,
+                "length": 300,
+                "deadline": 4000
+              },
+              {
+                "flow": "A",
+                "instance": 8,
+                "priority": 6,
+                "release": 4000,
+                "enqueue": 4000,
+                "length": 300,
+                "deadline": 4500
+              },
+              {
+                "flow": "B",
+                "instance": 8,
+                "priority": 6,
+                "release": 4000,
+                "enqueue": 4000,
+                "length": 300,
+                "deadline": 4500
+              }
+            ],
+            "transmission": {
+              "flow": "B",
+              "instance": 6,
+              "priority": 6,
+              "start": 3900,
+              "end": 4200,
+              "remaining": 200
+            }
+          }
+        ]
+      },
+      "growth": {
+        "samples": [
+          {
+            "time": 0,
+            "queued_count": 2,
+            "queued_length": 600,
+            "outstanding_length": 600,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 0,
+                "priority": 6,
+                "release": 0,
+                "enqueue": 0,
+                "length": 300,
+                "deadline": 500
+              },
+              {
+                "flow": "B",
+                "instance": 0,
+                "priority": 6,
+                "release": 0,
+                "enqueue": 0,
+                "length": 300,
+                "deadline": 500
+              }
+            ],
+            "transmission": null
+          },
+          {
+            "time": 1000,
+            "queued_count": 2,
+            "queued_length": 600,
+            "outstanding_length": 800,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 2,
+                "priority": 6,
+                "release": 1000,
+                "enqueue": 1000,
+                "length": 300,
+                "deadline": 1500
+              },
+              {
+                "flow": "B",
+                "instance": 2,
+                "priority": 6,
+                "release": 1000,
+                "enqueue": 1000,
+                "length": 300,
+                "deadline": 1500
+              }
+            ],
+            "transmission": {
+              "flow": "B",
+              "instance": 1,
+              "priority": 6,
+              "start": 900,
+              "end": 1200,
+              "remaining": 200
+            }
+          },
+          {
+            "time": 2000,
+            "queued_count": 3,
+            "queued_length": 900,
+            "outstanding_length": 1000,
+            "queues": [
+              {
+                "flow": "B",
+                "instance": 3,
+                "priority": 6,
+                "release": 1500,
+                "enqueue": 1500,
+                "length": 300,
+                "deadline": 2000
+              },
+              {
+                "flow": "A",
+                "instance": 4,
+                "priority": 6,
+                "release": 2000,
+                "enqueue": 2000,
+                "length": 300,
+                "deadline": 2500
+              },
+              {
+                "flow": "B",
+                "instance": 4,
+                "priority": 6,
+                "release": 2000,
+                "enqueue": 2000,
+                "length": 300,
+                "deadline": 2500
+              }
+            ],
+            "transmission": {
+              "flow": "A",
+              "instance": 3,
+              "priority": 6,
+              "start": 1800,
+              "end": 2100,
+              "remaining": 100
+            }
+          },
+          {
+            "time": 3000,
+            "queued_count": 4,
+            "queued_length": 1200,
+            "outstanding_length": 1200,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 5,
+                "priority": 6,
+                "release": 2500,
+                "enqueue": 2500,
+                "length": 300,
+                "deadline": 3000
+              },
+              {
+                "flow": "B",
+                "instance": 5,
+                "priority": 6,
+                "release": 2500,
+                "enqueue": 2500,
+                "length": 300,
+                "deadline": 3000
+              },
+              {
+                "flow": "A",
+                "instance": 6,
+                "priority": 6,
+                "release": 3000,
+                "enqueue": 3000,
+                "length": 300,
+                "deadline": 3500
+              },
+              {
+                "flow": "B",
+                "instance": 6,
+                "priority": 6,
+                "release": 3000,
+                "enqueue": 3000,
+                "length": 300,
+                "deadline": 3500
+              }
+            ],
+            "transmission": null
+          },
+          {
+            "time": 4000,
+            "queued_count": 4,
+            "queued_length": 1200,
+            "outstanding_length": 1400,
+            "queues": [
+              {
+                "flow": "A",
+                "instance": 7,
+                "priority": 6,
+                "release": 3500,
+                "enqueue": 3500,
+                "length": 300,
+                "deadline": 4000
+              },
+              {
+                "flow": "B",
+                "instance": 7,
+                "priority": 6,
+                "release": 3500,
+                "enqueue": 3500,
+                "length": 300,
+                "deadline": 4000
+              },
+              {
+                "flow": "A",
+                "instance": 8,
+                "priority": 6,
+                "release": 4000,
+                "enqueue": 4000,
+                "length": 300,
+                "deadline": 4500
+              },
+              {
+                "flow": "B",
+                "instance": 8,
+                "priority": 6,
+                "release": 4000,
+                "enqueue": 4000,
+                "length": 300,
+                "deadline": 4500
+              }
+            ],
+            "transmission": {
+              "flow": "B",
+              "instance": 6,
+              "priority": 6,
+              "start": 3900,
+              "end": 4200,
+              "remaining": 200
+            }
+          }
+        ],
+        "message": "连续超周期边界队列工作量严格增长，周期边界无法收敛，拒绝裁决（未截断模拟）"
+      },
+      "timeline": [
+        {
+          "t0": 0,
+          "t1": 300,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 0,
+              "priority": 6,
+              "release": 0,
+              "enqueue": 0,
+              "length": 300,
+              "deadline": 500
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 0,
+            "priority": 6,
+            "release": 0,
+            "deadline": 500,
+            "start": 0,
+            "end": 300
+          }
+        },
+        {
+          "t0": 300,
+          "t1": 500,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "B",
+            "instance": 0,
+            "priority": 6,
+            "release": 0,
+            "deadline": 500,
+            "start": 300,
+            "end": 600
+          }
+        },
+        {
+          "t0": 500,
+          "t1": 600,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 1,
+              "priority": 6,
+              "release": 500,
+              "enqueue": 500,
+              "length": 300,
+              "deadline": 1000
+            },
+            {
+              "flow": "B",
+              "instance": 1,
+              "priority": 6,
+              "release": 500,
+              "enqueue": 500,
+              "length": 300,
+              "deadline": 1000
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 0,
+            "priority": 6,
+            "release": 0,
+            "deadline": 500,
+            "start": 300,
+            "end": 600
+          }
+        },
+        {
+          "t0": 600,
+          "t1": 900,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 1,
+              "priority": 6,
+              "release": 500,
+              "enqueue": 500,
+              "length": 300,
+              "deadline": 1000
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 1,
+            "priority": 6,
+            "release": 500,
+            "deadline": 1000,
+            "start": 600,
+            "end": 900
+          }
+        },
+        {
+          "t0": 900,
+          "t1": 1000,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [],
+          "transmission": {
+            "flow": "B",
+            "instance": 1,
+            "priority": 6,
+            "release": 500,
+            "deadline": 1000,
+            "start": 900,
+            "end": 1200
+          }
+        },
+        {
+          "t0": 1000,
+          "t1": 1200,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 2,
+              "priority": 6,
+              "release": 1000,
+              "enqueue": 1000,
+              "length": 300,
+              "deadline": 1500
+            },
+            {
+              "flow": "B",
+              "instance": 2,
+              "priority": 6,
+              "release": 1000,
+              "enqueue": 1000,
+              "length": 300,
+              "deadline": 1500
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 1,
+            "priority": 6,
+            "release": 500,
+            "deadline": 1000,
+            "start": 900,
+            "end": 1200
+          }
+        },
+        {
+          "t0": 1200,
+          "t1": 1500,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 2,
+              "priority": 6,
+              "release": 1000,
+              "enqueue": 1000,
+              "length": 300,
+              "deadline": 1500
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 2,
+            "priority": 6,
+            "release": 1000,
+            "deadline": 1500,
+            "start": 1200,
+            "end": 1500
+          }
+        },
+        {
+          "t0": 1500,
+          "t1": 1800,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 3,
+              "priority": 6,
+              "release": 1500,
+              "enqueue": 1500,
+              "length": 300,
+              "deadline": 2000
+            },
+            {
+              "flow": "B",
+              "instance": 3,
+              "priority": 6,
+              "release": 1500,
+              "enqueue": 1500,
+              "length": 300,
+              "deadline": 2000
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 2,
+            "priority": 6,
+            "release": 1000,
+            "deadline": 1500,
+            "start": 1500,
+            "end": 1800
+          }
+        },
+        {
+          "t0": 1800,
+          "t1": 2000,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 3,
+              "priority": 6,
+              "release": 1500,
+              "enqueue": 1500,
+              "length": 300,
+              "deadline": 2000
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 3,
+            "priority": 6,
+            "release": 1500,
+            "deadline": 2000,
+            "start": 1800,
+            "end": 2100
+          }
+        },
+        {
+          "t0": 2000,
+          "t1": 2100,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 3,
+              "priority": 6,
+              "release": 1500,
+              "enqueue": 1500,
+              "length": 300,
+              "deadline": 2000
+            },
+            {
+              "flow": "A",
+              "instance": 4,
+              "priority": 6,
+              "release": 2000,
+              "enqueue": 2000,
+              "length": 300,
+              "deadline": 2500
+            },
+            {
+              "flow": "B",
+              "instance": 4,
+              "priority": 6,
+              "release": 2000,
+              "enqueue": 2000,
+              "length": 300,
+              "deadline": 2500
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 3,
+            "priority": 6,
+            "release": 1500,
+            "deadline": 2000,
+            "start": 1800,
+            "end": 2100
+          }
+        },
+        {
+          "t0": 2100,
+          "t1": 2400,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 4,
+              "priority": 6,
+              "release": 2000,
+              "enqueue": 2000,
+              "length": 300,
+              "deadline": 2500
+            },
+            {
+              "flow": "B",
+              "instance": 4,
+              "priority": 6,
+              "release": 2000,
+              "enqueue": 2000,
+              "length": 300,
+              "deadline": 2500
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 3,
+            "priority": 6,
+            "release": 1500,
+            "deadline": 2000,
+            "start": 2100,
+            "end": 2400
+          }
+        },
+        {
+          "t0": 2400,
+          "t1": 2500,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 4,
+              "priority": 6,
+              "release": 2000,
+              "enqueue": 2000,
+              "length": 300,
+              "deadline": 2500
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 4,
+            "priority": 6,
+            "release": 2000,
+            "deadline": 2500,
+            "start": 2400,
+            "end": 2700
+          }
+        },
+        {
+          "t0": 2500,
+          "t1": 2700,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 4,
+              "priority": 6,
+              "release": 2000,
+              "enqueue": 2000,
+              "length": 300,
+              "deadline": 2500
+            },
+            {
+              "flow": "A",
+              "instance": 5,
+              "priority": 6,
+              "release": 2500,
+              "enqueue": 2500,
+              "length": 300,
+              "deadline": 3000
+            },
+            {
+              "flow": "B",
+              "instance": 5,
+              "priority": 6,
+              "release": 2500,
+              "enqueue": 2500,
+              "length": 300,
+              "deadline": 3000
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 4,
+            "priority": 6,
+            "release": 2000,
+            "deadline": 2500,
+            "start": 2400,
+            "end": 2700
+          }
+        },
+        {
+          "t0": 2700,
+          "t1": 3000,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 5,
+              "priority": 6,
+              "release": 2500,
+              "enqueue": 2500,
+              "length": 300,
+              "deadline": 3000
+            },
+            {
+              "flow": "B",
+              "instance": 5,
+              "priority": 6,
+              "release": 2500,
+              "enqueue": 2500,
+              "length": 300,
+              "deadline": 3000
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 4,
+            "priority": 6,
+            "release": 2000,
+            "deadline": 2500,
+            "start": 2700,
+            "end": 3000
+          }
+        },
+        {
+          "t0": 3000,
+          "t1": 3300,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 5,
+              "priority": 6,
+              "release": 2500,
+              "enqueue": 2500,
+              "length": 300,
+              "deadline": 3000
+            },
+            {
+              "flow": "A",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            },
+            {
+              "flow": "B",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 5,
+            "priority": 6,
+            "release": 2500,
+            "deadline": 3000,
+            "start": 3000,
+            "end": 3300
+          }
+        },
+        {
+          "t0": 3300,
+          "t1": 3500,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            },
+            {
+              "flow": "B",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 5,
+            "priority": 6,
+            "release": 2500,
+            "deadline": 3000,
+            "start": 3300,
+            "end": 3600
+          }
+        },
+        {
+          "t0": 3500,
+          "t1": 3600,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            },
+            {
+              "flow": "B",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            },
+            {
+              "flow": "A",
+              "instance": 7,
+              "priority": 6,
+              "release": 3500,
+              "enqueue": 3500,
+              "length": 300,
+              "deadline": 4000
+            },
+            {
+              "flow": "B",
+              "instance": 7,
+              "priority": 6,
+              "release": 3500,
+              "enqueue": 3500,
+              "length": 300,
+              "deadline": 4000
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 5,
+            "priority": 6,
+            "release": 2500,
+            "deadline": 3000,
+            "start": 3300,
+            "end": 3600
+          }
+        },
+        {
+          "t0": 3600,
+          "t1": 3900,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "B",
+              "instance": 6,
+              "priority": 6,
+              "release": 3000,
+              "enqueue": 3000,
+              "length": 300,
+              "deadline": 3500
+            },
+            {
+              "flow": "A",
+              "instance": 7,
+              "priority": 6,
+              "release": 3500,
+              "enqueue": 3500,
+              "length": 300,
+              "deadline": 4000
+            },
+            {
+              "flow": "B",
+              "instance": 7,
+              "priority": 6,
+              "release": 3500,
+              "enqueue": 3500,
+              "length": 300,
+              "deadline": 4000
+            }
+          ],
+          "transmission": {
+            "flow": "A",
+            "instance": 6,
+            "priority": 6,
+            "release": 3000,
+            "deadline": 3500,
+            "start": 3600,
+            "end": 3900
+          }
+        },
+        {
+          "t0": 3900,
+          "t1": 4000,
+          "gate": [
+            6,
+            7
+          ],
+          "queues": [
+            {
+              "flow": "A",
+              "instance": 7,
+              "priority": 6,
+              "release": 3500,
+              "enqueue": 3500,
+              "length": 300,
+              "deadline": 4000
+            },
+            {
+              "flow": "B",
+              "instance": 7,
+              "priority": 6,
+              "release": 3500,
+              "enqueue": 3500,
+              "length": 300,
+              "deadline": 4000
+            }
+          ],
+          "transmission": {
+            "flow": "B",
+            "instance": 6,
+            "priority": 6,
+            "release": 3000,
+            "deadline": 3500,
+            "start": 3900,
+            "end": 4200
+          }
+        }
+      ],
+      "records": [
+        {
+          "flow": "A",
+          "instance": 0,
+          "priority": 6,
+          "release": 0,
+          "enqueue": 0,
+          "length": 300,
+          "deadline": 500,
+          "start": 0,
+          "end": 300,
+          "met": true
+        },
+        {
+          "flow": "B",
+          "instance": 0,
+          "priority": 6,
+          "release": 0,
+          "enqueue": 0,
+          "length": 300,
+          "deadline": 500,
+          "start": 300,
+          "end": 600,
+          "met": false
+        },
+        {
+          "flow": "A",
+          "instance": 1,
+          "priority": 6,
+          "release": 500,
+          "enqueue": 500,
+          "length": 300,
+          "deadline": 1000,
+          "start": 600,
+          "end": 900,
+          "met": true
+        },
+        {
+          "flow": "B",
+          "instance": 1,
+          "priority": 6,
+          "release": 500,
+          "enqueue": 500,
+          "length": 300,
+          "deadline": 1000,
+          "start": 900,
+          "end": 1200,
+          "met": false
+        },
+        {
+          "flow": "A",
+          "instance": 2,
+          "priority": 6,
+          "release": 1000,
+          "enqueue": 1000,
+          "length": 300,
+          "deadline": 1500,
+          "start": 1200,
+          "end": 1500,
+          "met": true
+        },
+        {
+          "flow": "B",
+          "instance": 2,
+          "priority": 6,
+          "release": 1000,
+          "enqueue": 1000,
+          "length": 300,
+          "deadline": 1500,
+          "start": 1500,
+          "end": 1800,
+          "met": false
+        },
+        {
+          "flow": "A",
+          "instance": 3,
+          "priority": 6,
+          "release": 1500,
+          "enqueue": 1500,
+          "length": 300,
+          "deadline": 2000,
+          "start": 1800,
+          "end": 2100,
+          "met": false
+        },
+        {
+          "flow": "B",
+          "instance": 3,
+          "priority": 6,
+          "release": 1500,
+          "enqueue": 1500,
+          "length": 300,
+          "deadline": 2000,
+          "start": 2100,
+          "end": 2400,
+          "met": false
+        },
+        {
+          "flow": "A",
+          "instance": 4,
+          "priority": 6,
+          "release": 2000,
+          "enqueue": 2000,
+          "length": 300,
+          "deadline": 2500,
+          "start": 2400,
+          "end": 2700,
+          "met": false
+        },
+        {
+          "flow": "B",
+          "instance": 4,
+          "priority": 6,
+          "release": 2000,
+          "enqueue": 2000,
+          "length": 300,
+          "deadline": 2500,
+          "start": 2700,
+          "end": 3000,
+          "met": false
+        },
+        {
+          "flow": "A",
+          "instance": 5,
+          "priority": 6,
+          "release": 2500,
+          "enqueue": 2500,
+          "length": 300,
+          "deadline": 3000,
+          "start": 3000,
+          "end": 3300,
+          "met": false
+        },
+        {
+          "flow": "B",
+          "instance": 5,
+          "priority": 6,
+          "release": 2500,
+          "enqueue": 2500,
+          "length": 300,
+          "deadline": 3000,
+          "start": 3300,
+          "end": 3600,
+          "met": false
+        },
+        {
+          "flow": "A",
+          "instance": 6,
+          "priority": 6,
+          "release": 3000,
+          "enqueue": 3000,
+          "length": 300,
+          "deadline": 3500,
+          "start": 3600,
+          "end": 3900,
+          "met": false
+        }
+      ],
+      "carried_frames": [
+        [
+          "A",
+          5
+        ],
+        [
+          "B",
+          3
+        ],
+        [
+          "B",
+          5
+        ]
+      ]
+    }
+  }
+}

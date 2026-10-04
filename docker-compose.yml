@@ -1,0 +1,30 @@
+services:
+  web:
+    build: .
+    image: gate-scheduler:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - verdict-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/health',timeout=3).status==200 else 1)"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # 一次性验收：先构建检查，再运行代码测试，最后对审计接口做 HTTP 冒烟
+  # （遗留帧收敛证据 + 队列增长拒绝），以退出码报告后退出。
+  # 运行：docker compose build && docker compose run --rm verify
+  verify:
+    image: gate-scheduler:latest
+    build: .
+    depends_on:
+      web:
+        condition: service_healthy
+    environment:
+      BASE_URL: http://web:8000
+    command: ["python", "verify.py"]
+    restart: "no"
+
+volumes:
+  verdict-data:

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>机载以太网门控调度裁决</title>
+<style>
+  :root { --bd:#d0d7de; --bg:#f6f8fa; --ok:#1a7f37; --bad:#cf222e; --warn:#9a6700; }
+  * { box-sizing: border-box; }
+  body { font-family: "PingFang SC","Microsoft YaHei",system-ui,sans-serif; margin:0; background:var(--bg); color:#1f2328; }
+  header { background:#0d2240; color:#fff; padding:14px 24px; }
+  header h1 { margin:0; font-size:18px; }
+  header p { margin:4px 0 0; font-size:12px; opacity:.8; }
+  main { max-width:1180px; margin:18px auto; padding:0 16px; }
+  .card { background:#fff; border:1px solid var(--bd); border-radius:8px; padding:16px; margin-bottom:16px; }
+  .card h2 { margin:0 0 12px; font-size:15px; }
+  label { font-size:12px; color:#57606a; display:block; margin-bottom:3px; }
+  input[type=text],input[type=number] { padding:6px 8px; border:1px solid var(--bd); border-radius:5px; font-size:13px; width:100%; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
+  .row > div { flex:1; min-width:150px; }
+  table { border-collapse:collapse; width:100%; font-size:12.5px; }
+  th,td { border:1px solid var(--bd); padding:5px 8px; text-align:center; white-space:nowrap; }
+  th { background:#f0f3f6; }
+  table input[type=number],table input[type=text]{ padding:4px 6px; }
+  button { cursor:pointer; border:1px solid var(--bd); background:#f6f8fa; border-radius:6px; padding:7px 14px; font-size:13px; }
+  button.primary { background:#0969da; color:#fff; border-color:#0969da; font-weight:600; }
+  button.danger { color:var(--bad); }
+  .prio-chk { display:inline-flex; align-items:center; gap:2px; margin-right:7px; font-size:12px; }
+  .prio-chk input { width:auto; }
+  .banner { border-radius:8px; padding:14px 18px; font-size:15px; font-weight:600; margin-bottom:14px; }
+  .banner.PASS { background:#dafbe1; color:var(--ok); border:1px solid #aceebb; }
+  .banner.OVERDUE { background:#ffebe9; color:var(--bad); border:1px solid #ffabaf; }
+  .banner.REJECTED_QUEUE_GROWTH { background:#fff8c5; color:var(--warn); border:1px solid #eac33f; }
+  .banner.ERROR { background:#ffebe9; color:var(--bad); border:1px solid #ffabaf; }
+  .muted { color:#57606a; font-size:12px; }
+  .chip { display:inline-block; border-radius:10px; padding:1px 8px; margin:1px 2px; font-size:11px; border:1px solid var(--bd); background:#f6f8fa; }
+  .chip.hi { background:#fff0e6; border-color:#f0b88f; }
+  .chip.gate-off { background:#f0f0f0; color:#999; }
+  .chip.gate-on { background:#ddf4ff; border-color:#7cc4f4; }
+  .scroll { max-height:430px; overflow:auto; border:1px solid var(--bd); border-radius:6px; }
+  .meta { font-size:12px; color:#57606a; margin-bottom:8px; }
+  .frozen { font-size:12px; color:var(--ok); margin-left:10px; }
+  .grow-up::after { content:" ▲"; color:var(--bad); }
+  h3 { font-size:13.5px; margin:16px 0 6px; }
+  .blocker-HIGH { color:var(--bad); font-weight:600; }
+  .gatecell { max-width:260px; }
+  .ok-text { color:var(--ok); font-weight:600; }
+  .bad-text { color:var(--bad); font-weight:600; }
+</style>
+</head>
+<body>
+<header>
+  <h1>机载以太网发布门控调度 —— 冻结裁决台</h1>
+  <p>非抢占 · 单出口 · 严格优先级（7 最高）· 跨周期遗留队列 · 时间单位：整数微秒</p>
+</header>
+<main>
+  <div class="card">
+    <h2>1. 录入配置</h2>
+    <div class="row">
+      <div style="flex:2">
+        <label>稳定审计标识（字母/数字/-/_，1–64）</label>
+        <input type="text" id="audit_id" value="AUDIT-001" />
+      </div>
+      <div>
+        <label>门控周期 cycle (μs，整数)</label>
+        <input type="number" id="cycle" value="1000" min="1" />
+      </div>
+      <div style="flex:0 0 auto">
+        <button class="primary" id="btnSubmit">提交裁决</button>
+        <button id="btnRead">读取冻结裁决</button>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:8px">修改任意输入或提交失败都会清除页面上的旧裁决；同一审计标识重复读取返回同一冻结结论，不同内容复用标识将冲突。</p>
+  </div>
+
+  <div class="card">
+    <h2>2. 流（至多 8 条：优先级 / 周期 / 发送时长 / 截止期）</h2>
+    <table id="flowTable">
+      <thead><tr>
+        <th style="width:15%">流标识</th><th>优先级 (0–7)</th><th>周期 (μs)</th><th>发送时长 (μs)</th><th>截止期 (μs)</th><th style="width:60px"></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    <div style="margin-top:8px"><button id="btnAddFlow">+ 添加流</button></div>
+  </div>
+
+  <div class="card">
+    <h2>3. 门控项（按时间升序；勾选的优先级在该窗口放行）</h2>
+    <table id="gateTable">
+      <thead><tr>
+        <th style="width:130px">起始时间 (μs)</th><th>放行优先级（仅列明者可发送）</th><th style="width:60px"></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    <div style="margin-top:8px"><button id="btnAddGate">+ 添加门控项</button></div>
+  </div>
+
+  <div id="verdict"></div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let dirty = false;
+const markDirty = () => { dirty = true; $('verdict').innerHTML = ''; };
+
+// ---------- 流编辑 ----------
+function flowRow(f = {}) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" class="f-id" value="${f.id ?? ''}" placeholder="F1" /></td>
+    <td><input type="number" class="f-prio" min="0" max="7" value="${f.priority ?? 1}" /></td>
+    <td><input type="number" class="f-per" min="1" value="${f.period_us ?? 1000}" /></td>
+    <td><input type="number" class="f-len" min="1" value="${f.length_us ?? 100}" /></td>
+    <td><input type="number" class="f-dl" min="1" value="${f.deadline_us ?? 1000}" /></td>
+    <td><button class="danger">删除</button></td>`;
+  tr.querySelector('button').onclick = () => { tr.remove(); markDirty(); };
+  tr.querySelectorAll('input').forEach(i => i.oninput = markDirty);
+  return tr;
+}
+function addFlow(f) {
+  const tb = $('flowTable').querySelector('tbody');
+  if (tb.rows.length >= 8) { alert('至多 8 条流'); return; }
+  tb.appendChild(flowRow(f));
+}
+$('btnAddFlow').onclick = () => addFlow();
+
+// ---------- 门控项编辑 ----------
+function gateRow(g = {}) {
+  const tr = document.createElement('tr');
+  let boxes = '';
+  for (let p = 0; p <= 7; p++) {
+    const on = (g.priorities || []).includes(p) ? 'checked' : '';
+    boxes += `<label class="prio-chk"><input type="checkbox" value="${p}" ${on}/>${p}</label>`;
+  }
+  tr.innerHTML = `
+    <td><input type="number" class="g-time" min="0" value="${g.time_us ?? 0}" /></td>
+    <td style="text-align:left">${boxes}</td>
+    <td><button class="danger">删除</button></td>`;
+  tr.querySelector('button').onclick = () => { tr.remove(); markDirty(); };
+  tr.querySelectorAll('input').forEach(i => i.oninput = markDirty);
+  return tr;
+}
+function addGate(g) { $('gateTable').querySelector('tbody').appendChild(gateRow(g)); }
+$('btnAddGate').onclick = () => addGate();
+
+// ---------- 组装请求 ----------
+function buildPayload() {
+  const flows = [...$('flowTable').querySelector('tbody').rows].map(tr => ({
+    id: tr.querySelector('.f-id').value.trim(),
+    priority: Number(tr.querySelector('.f-prio').value),
+    period_us: Number(tr.querySelector('.f-per').value),
+    length_us: Number(tr.querySelector('.f-len').value),
+    deadline_us: Number(tr.querySelector('.f-dl').value),
+  }));
+  const gates = [...$('gateTable').querySelector('tbody').rows].map(tr => ({
+    time_us: Number(tr.querySelector('.g-time').value),
+    priorities: [...tr.querySelectorAll('.g-time, input[type=checkbox]')]
+      .filter(i => i.type === 'checkbox' && i.checked).map(i => Number(i.value)),
+  }));
+  return { audit_id: $('audit_id').value.trim(), cycle_us: Number($('cycle').value), flows, gates };
+}
+$('audit_id').oninput = markDirty; $('cycle').oninput = markDirty;
+
+// ---------- 渲染 ----------
+const STATUS_TEXT = {
+  PASS: '通过：全部流按期发送（稳态周期证据见下）',
+  OVERDUE: '不通过：存在超期帧（首个超期帧证据见下）',
+  REJECTED_QUEUE_GROWTH: '拒绝：周期边界无法收敛，队列连续增长（未截断模拟）',
+};
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function queueChips(qs) {
+  if (!qs || !qs.length) return '<span class="muted">空</span>';
+  return qs.map(f => `<span class="chip ${f.priority >= 5 ? 'hi' : ''}">${esc(f.flow)}#${f.instance}(p${f.priority},释${f.release},L${f.length},截${f.deadline})</span>`).join('');
+}
+function gateChips(open) {
+  const o = new Set(open || []);
+  let h = '';
+  for (let p = 7; p >= 0; p--) {
+    h += `<span class="chip ${o.has(p) ? 'gate-on' : 'gate-off'}">P${o.has(p) ? '' : '·'}${p}</span>`;
+  }
+  return h;
+}
+function render(record) {
+  const v = record.verdict;
+  let h = `<div class="banner ${v.status}">${STATUS_TEXT[v.status] || v.status}
+      <span class="frozen">审计标识 ${esc(record.audit_id)} · 冻结于 ${esc(record.submitted_at)}${record.created ? '' : '（既有冻结结论）'}</span></div>`;
+  h += `<div class="meta">超周期（门控周期与各流周期 LCM）= <b>${v.hyperperiod_us}</b> μs；收敛方式：${
+      v.convergence.mode === 'EMPTY_BOUNDARY' ? '边界排空' :
+      v.convergence.mode === 'REPEAT_SIGNATURE' ? '边界队列签名重复' : '连续增长拒绝'}</div>`;
+
+  if (v.status === 'PASS') {
+    h += '<div class="card"><h2>各流按期发送的周期证据（稳态模板内每一帧）</h2>';
+    for (const [fid, evs] of Object.entries(v.flow_evidence)) {
+      h += `<h3>流 ${esc(fid)}</h3><div class="scroll"><table><thead><tr>
+        <th>帧序号</th><th>释放</th><th>入队</th><th>开始发送</th><th>发送完成</th><th>发送时长</th><th>截止期</th><th>结果</th></tr></thead><tbody>`;
+      for (const e of evs) {
+        h += `<tr><td>#${e.instance}</td><td>${e.release}</td><td>${e.enqueue}</td><td>${e.start}</td>
+          <td>${e.end}</td><td>${e.length}</td><td>${e.deadline}</td>
+          <td class="${e.met ? 'ok-text' : 'bad-text'}">${e.met ? '按期' : '超期'}</td></tr>`;
+      }
+      h += '</tbody></table></div>';
+    }
+    if (v.carried_frames && v.carried_frames.length) {
+      h += `<p class="muted" style="margin-top:8px">跨门控周期遗留帧（等待跨过周期边界后发送）：${
+        v.carried_frames.map(c => `${esc(c[0])}#${c[1]}`).join('、')}</p>`;
+    }
+    h += '</div>';
+  }
+
+  if (v.status === 'OVERDUE') {
+    const o = v.first_overdue;
+    h += `<div class="card"><h2>首个超期帧证据</h2>
+      <table><tbody>
+      <tr><th>流 / 帧</th><td>${esc(o.flow)} #${o.instance}（优先级 ${o.priority}）</td></tr>
+      <tr><th>释放时间</th><td>${o.release} μs</td></tr>
+      <tr><th>入队时间</th><td>${o.enqueue} μs</td></tr>
+      <tr><th>起始发送</th><td>${o.start} μs</td></tr>
+      <tr><th>发送完成</th><td>${o.end} μs</td></tr>
+      <tr><th>截止期</th><td>${o.deadline} μs（超期 ${o.end - o.deadline} μs）</td></tr>
+      </tbody></table>
+      <h3>阻塞来源（释放 → 起始发送，${o.start - o.release} μs）</h3>`;
+    if (!o.blockers.length) {
+      h += '<p class="muted">无等待（发送时长自身超过相对截止期）。</p>';
+    } else {
+      h += '<table><thead><tr><th>阻塞类型</th><th>来源帧</th><th>起</th><th>止</th><th>时长 (μs)</th></tr></thead><tbody>';
+      const REASON = { higher_priority:'更高优先级帧正在发送（严格优先级）', same_priority_fifo:'同优先级先到帧（FIFO）',
+        lower_priority_nonpreemptive:'低优先级帧发送中（非抢占，不能打断）', gate_closed:'本优先级门未放行', window_too_short:'放行窗口太短，帧无法完整发送，继续等待' };
+      for (const b of o.blockers) {
+        h += `<tr><td class="blocker-HIGH">${REASON[b.reason] || b.reason}</td>
+          <td>${b.flow ? esc(b.flow) + ' #' + b.instance : '—'}</td><td>${b.from}</td><td>${b.to}</td><td>${b.duration}</td></tr>`;
+      }
+      h += '</tbody></table>';
+    }
+    h += '</div>';
+  }
+
+  if (v.status === 'REJECTED_QUEUE_GROWTH') {
+    h += '<div class="card"><h2>连续增长的队列证据（超周期边界采样，未截断模拟）</h2><table><thead><tr>
+      <th>边界时刻 (μs)</th><th>队列帧数</th><th>队列总发送时长 (μs)</th><th>队列明细</th><th>发送中</th></tr></thead><tbody>';
+    for (const s of v.growth.samples) {
+      h += `<tr class="grow-up"><td>${s.time}</td><td>${s.queued_count}</td><td>${s.queued_length}</td>
+        <td class="gatecell" style="text-align:left">${queueChips(s.queues)}</td>
+        <td>${s.transmission ? esc(s.transmission.flow)+'#'+s.transmission.instance : '—'}</td></tr>`;
+    }
+    h += '</tbody></table><p class="muted" style="margin-top:8px">' + esc(v.growth.message) + '</p></div>';
+  }
+
+  // 逐时隙
+  h += '<div class="card"><h2>逐时隙队列 / 门状态 / 发送结果</h2><div class="scroll"><table><thead><tr>';
+  h += '<th>时隙 [t0,t1)</th><th>门状态（蓝=放行）</th><th>出口队列快照</th><th>发送结果</th></tr></thead><tbody>';
+  for (const s of v.timeline) {
+    const tr = s.transmission
+      ? `${esc(s.transmission.flow)}#${s.transmission.instance} p${s.transmission.priority}：${s.transmission.start}→${s.transmission.end}（截${s.transmission.deadline}）`
+      : '<span class="muted">空闲</span>';
+    h += `<tr><td>${s.t0} – ${s.t1}</td><td class="gatecell">${gateChips(s.gate)}</td>
+      <td class="gatecell" style="text-align:left">${queueChips(s.queues)}</td><td style="text-align:left">${tr}</td></tr>`;
+  }
+  h += '</tbody></table></div></div>';
+  $('verdict').innerHTML = h;
+}
+
+function showError(msg, status, detail) {
+  let extra = '';
+  if (status === 409 && detail && detail.existing_verdict) {
+    const ev = detail.existing_verdict;
+    extra = `<p class="muted">原冻结裁决保持不变（状态 ${ev.verdict.status}，冻结于 ${esc(ev.submitted_at)}）。
+      <button id="btnShowExisting">查看原冻结裁决</button></p>`;
+  }
+  $('verdict').innerHTML = `<div class="banner ERROR">提交失败：${esc(msg)}</div><div class="card">${esc(typeof detail === 'string' ? detail : JSON.stringify(detail?.message || detail || ''))}${extra}</div>`;
+  const btn = $('btnShowExisting');
+  if (btn) btn.onclick = () => fetchRecord($('audit_id').value.trim());
+}
+
+async function fetchRecord(auditId) {
+  const r = await fetch(`/api/verdict/${encodeURIComponent(auditId)}`);
+  const data = await r.json();
+  if (!r.ok) { showError('读取失败', r.status, data.detail); return; }
+  render(data);
+}
+
+$('btnSubmit').onclick = async () => {
+  $('verdict').innerHTML = '';  // 提交即先清除旧裁决
+  dirty = false;
+  let payload;
+  try { payload = buildPayload(); } catch (e) { return showError('输入组装失败', 400, String(e)); }
+  const r = await fetch('/api/submit', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+  const data = await r.json();
+  if (!r.ok) { showError(r.status === 409 ? '审计标识冲突' : '校验/裁决失败', r.status, data.detail); return; }
+  render(data);
+};
+$('btnRead').onclick = () => fetchRecord($('audit_id').value.trim());
+
+// ---------- 默认示例：可收敛、含跨周期遗留 ----------
+addFlow({ id:'F_HIGH', priority:6, period_us:2000, length_us:120, deadline_us:2000 });
+addFlow({ id:'F_LOW',  priority:1, period_us:3000, length_us:260, deadline_us:3000 });
+addGate({ time_us:0,   priorities:[1,2,3,4,5,6,7] });
+addGate({ time_us:700, priorities:[6,7] });
+</script>
+</body>
+</html>
